@@ -24,7 +24,17 @@ import cors from "cors";
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:5173", // Dev
+  "https://real-estate-km.netlify.app", // Replace with your actual Netlify URL
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true, // needed if you're using cookies/auth headers
+  })
+);
 
 // MongoDB connection with error handling
 mongoose
